@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Ex02Controller {
 	@RequestMapping("/lifecycle/ex02")
 	public String view() {
-		return "/WEB-INF/jsp/lifecycle/ex02.jsp";
+		return "/lifecycle/ex02";
 	}
 }
+
