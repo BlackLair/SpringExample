@@ -15,4 +15,20 @@ public class ReviewService {
 		Review review = reviewRepository.selectReview(id);
 		return review;
 	}
+	
+	public int addReview(
+			int storeId
+			, String menu
+			, String userName
+			, double point
+			, String review) {
+		int count = reviewRepository.insertReview(storeId, menu, userName, point, review);
+		return count;
+		
+	}
+	
+	public int addReviewByObject(Review review) {
+		int count = reviewRepository.insertReviewByObject(review);
+		return count;
+	}
 }
