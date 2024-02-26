@@ -10,6 +10,10 @@
 	<h2>${title }</h2>
 	<table border="1">
 		<tr>
+			<td>id</td>
+			<td>${result.id }</td>
+		</tr>
+		<tr>
 			<td>이름</td>
 			<td>${result.name }</td>
 		</tr>

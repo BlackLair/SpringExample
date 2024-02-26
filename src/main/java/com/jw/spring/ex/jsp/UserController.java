@@ -23,14 +23,25 @@ public class UserController {
 	// Get
 	// Post : 보안상 예민한 파라미터가 포함되거나 데이터가 길어 주소로 표현이 어려운 경우
 	@PostMapping("/create")
-	@ResponseBody
 	public String createUser(
 			@RequestParam("name") String name
 			, @RequestParam("birthday") String birthday
 			, @RequestParam("email") String email
-			, @RequestParam("introduce") String introduce){
-		int count = userService.addUser(name, birthday, email, introduce);
-		return "삽입 결과 : " + count;	
+			, @RequestParam("introduce") String introduce
+			, Model model){
+//		int count = userService.addUser(name, birthday, email, introduce);
+		User user = new User();
+		user.setName(name);
+		user.setYyyymmdd(birthday);
+		user.setEmail(email);
+		user.setIntroduce(introduce);
+		
+		int count = userService.addUserByObject(user);
+		
+		model.addAttribute("result", user);
+		model.addAttribute("title", "사용자 정보");
+		return "jsp/userInfo";
+//		return "삽입 결과 : " + user.getId();	
 	}
 	
 	@GetMapping("/input")
