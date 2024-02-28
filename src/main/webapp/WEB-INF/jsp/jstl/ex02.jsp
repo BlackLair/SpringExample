@@ -39,5 +39,26 @@
 		<h4>${fruit } :: ${status.count }, ${status.index }, ${status.first }, ${status.last } </h4>
 	</c:forEach>
 	
+	<h3>사용자 리스트</h3>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>취미</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="member" items="${memberList }">
+			<tr>
+				<td>${member.name }</td>
+				<td>${member.age }</td>
+				<td>${member.hobby }</td>
+			</tr>
+			</c:forEach>
+		</tbody>
+	
+	</table>
+	
 </body>
 </html>
