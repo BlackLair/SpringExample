@@ -2,18 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JSTL Format Library</title>
+<title>JSTL function Library</title>
 </head>
 <body>
-	<c:set var="dateString" value="21시 05분 23초 / 2024년 02월 28일" />
-	<fmt:parseDate var="date" value="${dateString }" pattern="HH시 mm분 ss초 / yyyy년 MM월 dd일" />
-	${date } <br><br>
-
-	<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss" /><br>
-	<fmt:formatNumber value="${43 / 131 }" type="percent" pattern="0.0000000%" />
+<c:set var="string1" value="     이것이 문자열이다.    " />
+<textarea cols="25">${string1 }</textarea>
+<h4>문자열 앞뒤 공백 제거</h4>
+<textarea cols="25">${fn:trim(string1) }</textarea>
 </body>
 </html>

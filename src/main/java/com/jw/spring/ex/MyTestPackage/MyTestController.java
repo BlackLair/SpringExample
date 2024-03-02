@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MyTestController {
-	@GetMapping("/jstl/format/test")
-	public String formatTest(Model model) {
-		Date now = new Date();
-		model.addAttribute("now", now);
+	@GetMapping("/jstl/function/test")
+	public String functionTest(Model model) {
+		
 		
 		return "/jstl/MyEx";
 	}
