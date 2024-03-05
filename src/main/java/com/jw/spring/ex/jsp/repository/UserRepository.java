@@ -1,5 +1,7 @@
 package com.jw.spring.ex.jsp.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,7 +16,6 @@ public interface UserRepository {
 			, @Param("introduce") String introduce);
 	
 	public int insertUserByObject(User user);
-	
-	
 	public User selectLastUser();
+	public List<User> selectUserList();
 }
