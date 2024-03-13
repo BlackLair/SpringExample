@@ -1,13 +1,46 @@
 package com.jw.spring.ex.jpa;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jw.spring.ex.jpa.domain.Student;
+import com.jw.spring.ex.jpa.service.StudentService;
 
 @Controller
 public class StudentController {
+	@Autowired
+	private StudentService studentService;
+	
+	// 학생 정보 저장
+	@GetMapping("/jpa/student/create")
+	@ResponseBody
+	public Student createStudent(){
+		String name = "고주몽";
+		String phoneNumber = "010-5858-1515";
+		String email = "jumong@gmail.com";
+		String dreamJob = "개발자";
+		
+		Student student = studentService.addStudent(name, phoneNumber, email, dreamJob);
+		return student;
+	} 
+	
+	@GetMapping("/jpa/student/update")
+	@ResponseBody
+	public Student updateStudent() {
+		// id가 8인 학생정보의 장래 희망을 강사로 수정
+		Student student = studentService.updateStudent(3, "선생님");
+		return student;
+	}
+	
+	@GetMapping("/jpa/student/delete")
+	@ResponseBody
+	public String deleteStudent() {
+		// id가 10인 행 삭제
+		studentService.deleteStudent(10);
+		return "삭제 완료";
+	}
 	
 	@GetMapping("/lombok/test")
 	@ResponseBody
