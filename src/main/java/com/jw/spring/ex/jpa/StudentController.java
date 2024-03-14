@@ -1,20 +1,31 @@
 package com.jw.spring.ex.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jw.spring.ex.jpa.domain.Student;
+import com.jw.spring.ex.jpa.repository.StudentRepository;
 import com.jw.spring.ex.jpa.service.StudentService;
 
+@RequestMapping("/jpa/student")
 @Controller
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	
+	// 실전에선 절대 Controller 내에서 Repository를 사용하지 말 것!!
+	@Autowired
+	private StudentRepository studentRepository;
+	
 	// 학생 정보 저장
-	@GetMapping("/jpa/student/create")
+	@GetMapping("/create")
 	@ResponseBody
 	public Student createStudent(){
 		String name = "고주몽";
@@ -26,7 +37,7 @@ public class StudentController {
 		return student;
 	} 
 	
-	@GetMapping("/jpa/student/update")
+	@GetMapping("/update")
 	@ResponseBody
 	public Student updateStudent() {
 		// id가 8인 학생정보의 장래 희망을 강사로 수정
@@ -34,13 +45,35 @@ public class StudentController {
 		return student;
 	}
 	
-	@GetMapping("/jpa/student/delete")
+	@GetMapping("/delete")
 	@ResponseBody
 	public String deleteStudent() {
 		// id가 10인 행 삭제
 		studentService.deleteStudent(10);
 		return "삭제 완료";
 	}
+	
+	@GetMapping("/read")
+	@ResponseBody
+	public List<Student> readStudent() {
+		// 전체 행 조회
+		List<Student> studentList = null;
+//		studentList = studentRepository.findAll();
+//		studentList = studentRepository.findTop2ByOrderByIdDesc();
+//		studentList = studentRepository.findByName("조세호");
+		
+//		List<String> nameList = new ArrayList<>();
+//		nameList.add("유재석");
+//		nameList.add("조세호");
+//		studentList = studentRepository.findByNameIn(nameList);
+		
+//		studentList = studentRepository.findByEmailContaining("naver");
+		
+//		studentList = studentRepository.findByIdBetweenOrderByIdDesc(2, 3);
+		studentList = studentRepository.findByNativeQuery("선생님");
+		return studentList;
+	}
+	
 	
 	@GetMapping("/lombok/test")
 	@ResponseBody
