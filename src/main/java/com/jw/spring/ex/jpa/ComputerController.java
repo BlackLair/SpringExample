@@ -54,5 +54,5 @@ public class ComputerController {
 			return "삭제되었습니다.";
 		}
 		return "삭제 실패";
-	}
+	} 
 }
