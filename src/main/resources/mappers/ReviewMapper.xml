@@ -60,4 +60,13 @@
 			, #{review}
 		);
 	</insert>
+	<update id="updatePoint"
+	parameterType="map">
+		UPDATE
+			`new_review`
+		SET
+			`point` = #{point} + 0.1
+		WHERE
+			`id` = #{id};
+	</update>
 </mapper>

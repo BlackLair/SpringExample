@@ -16,4 +16,8 @@ public interface ReviewRepository {
 			, @Param("point") double point
 			, @Param("review") String review);
 	public int insertReviewByObject(Review review);
+	
+	public int updatePoint(@Param("id")int id, @Param("point") double point);
+	public int doublePoint(@Param("id")int id);
+
 }
